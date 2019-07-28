@@ -13,11 +13,17 @@
 }
 
 .row.title {
-  background: yellow;
+  // background: yellow;
 }
 
 .row.content {
-  height: 100%;
+  display: none;
+  border: none;
+  
+}
+
+.row.content.show{
+  display: flex; 
 }
 
 .column.period {
