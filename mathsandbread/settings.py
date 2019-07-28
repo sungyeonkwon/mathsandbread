@@ -153,3 +153,8 @@ MESSAGE_TAGS = {
     # 50: 'critical',
     messages.ERROR: 'danger',
 }
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
