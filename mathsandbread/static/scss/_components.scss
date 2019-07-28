@@ -13,17 +13,28 @@
 }
 
 .row.title {
-  // background: yellow;
+  cursor: pointer;
 }
 
 .row.content {
-  display: none;
   border: none;
-  
+  // padding: 0;
+  display: none;
+  max-height: 0;
+  opacity: 0;
+  // transition: height .4s linear,
+  //   max-height .4s linear,
+  //   opacity .4s linear;
 }
 
 .row.content.show{
   display: flex; 
+  
+  // padding: 10px;
+  overflow-y: hidden;
+  height: 100%;
+  opacity: 1;
+	max-height: 500px; /* approximate max height */
 }
 
 .column.period {
@@ -44,4 +55,13 @@ button {
   all: unset;
   border: 1px solid black;
   padding: 5px 10px;
+}
+
+/* Messages for Login */
+.danger {
+  color: red;
+}
+
+#message.hide {
+  display: none;
 }

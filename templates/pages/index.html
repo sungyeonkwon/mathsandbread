@@ -6,7 +6,7 @@
 <div class="container">
   <div class="row label">
     <div class="column period">
-        period
+        Period
       </div>
       <div class="column status">
         은영
@@ -17,36 +17,41 @@
   </div>
 </div>
 
-<div class="container js-stack">
-  <div class="row title">
-    <div class="column period">
-      Week 23
-    </div>
-    <div class="column">
-      Attempted
-    </div>
-    <div class="column">
-      YAY
-    </div>  
-  </div>
-  <div class="row content">
-    <div class="column period">
-      Real timeperiod info
+{% if bundles %}
+  {% for bundle in bundles %}
+  <div class="container js-stack">
+    <div class="row title">
+      <div class="column period">
+        Week 23
       </div>
       <div class="column">
-        <h3 class="quiz">
-          What is the common divisor of 3 and 5?
-        </h3>
-        <button>Upload</button>
-        <img src="{% static 'img/placeholder.png' %}" />
+      {{ bundle.quiz_for_EY.status }}
       </div>
       <div class="column">
-        <h3 class="quiz">
-          What is the common divisor of 3 and 5?
-        </h3>
-        <button>Submit</button>
-        <p>this is a code</p>
+      {{ bundle.quiz_for_SY.status }}
       </div>  
+    </div>
+    <div class="row content">
+      <div class="column period">
+        {{ bundle.start_date }}
+        </div>
+        <div class="column">
+          <h3 class="quiz">
+          {{ bundle.quiz_for_EY.title }}
+          </h3>
+          <button>Upload</button>
+          <img src="{{ bundle.quiz_for_EY.answer.url }}" />
+        </div>
+        <div class="column">
+          <h3 class="quiz">
+          {{ bundle.quiz_for_SY.title }}
+          </h3>
+          <button>Submit</button>
+          <p>this is a code</p>
+        </div>  
+    </div>
   </div>
-</div>
+  {% endfor %}
+{% endif %}
+
 {% endblock %}
