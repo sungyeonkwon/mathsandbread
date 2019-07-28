@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load sass_tags static %}
+
+{% block content%}
+
+<div class="container">
+  <div class="row label">
+    <div class="column period">
+        period
+      </div>
+      <div class="column status">
+        은영
+      </div>
+      <div class="column status">
+        성연
+      </div>  
+  </div>
+</div>
+
+<div class="container">
+  <div class="row title">
+    <div class="column period">
+      Week 23
+    </div>
+    <div class="column">
+      Attempted
+    </div>
+    <div class="column">
+      YAY
+    </div>  
+  </div>
+  <div class="row content">
+    <div class="column period">
+      Real timeperiod info
+      </div>
+      <div class="column">
+        <h3 class="quiz">
+          What is the common divisor of 3 and 5?
+        </h3>
+        <button>Upload</button>
+        <img src="{% static 'img/placeholder.png' %}" />
+      </div>
+      <div class="column">
+        <h3 class="quiz">
+          What is the common divisor of 3 and 5?
+        </h3>
+        <button>Submit</button>
+        <p>this is a code</p>
+      </div>  
+  </div>
+</div>
+{% endblock %}

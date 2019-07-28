@@ -1,0 +1,41 @@
+/* Bundle */
+.row {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border-top: 1px solid black;
+}
+
+.row.label {
+  background: pink;
+}
+
+.row.title {
+  background: yellow;
+}
+
+.row.content {
+  height: 100%;
+}
+
+.column.period {
+  width: 20vw;
+}
+
+.column {
+  width: 40vw;
+  padding-right: 30px;
+}
+
+.quiz {
+  font-size: 3em;
+}
+
+/* Form */
+button {
+  all: unset;
+  border: 1px solid black;
+  padding: 5px 10px;
+}
