@@ -44,16 +44,15 @@
           {% if bundle.quiz_for_EY.question_image %}
           <img class="quiz-img" src="{{ bundle.quiz_for_EY.question_image.url }}" />
           {% endif %}
-          {% if user.is_authenticated %}
-          <!-- <button>Upload Answer Image</button> -->
-          {% endif %}
 
           <!-- form image upload -->
-          <form method="post" action='{% url "index" pk=bundle.quiz_for_EY.pk|default_if_none:"" %}' enctype="multipart/form-data">
+          {% if user.is_authenticated %}
+          <form method="post" action='{% url "index" category="ey" pk=bundle.quiz_for_EY.pk|default_if_none:"" %}' enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Test upload</button>
+            <button type="submit">Upload Answer Image</button>
           </form>
+          {% endif %}
           <!-- end -->
 
           {% if bundle.quiz_for_EY.answer %}
@@ -65,10 +64,18 @@
           {{ bundle.quiz_for_SY.title }}
           </h3>
           <p>{{ bundle.quiz_for_SY.question }}</p>
+
+          <!-- form code upload -->
           {% if user.is_authenticated %}
-          <button>Submit Code</button>
+          <form method="post" action='{% url "index" category="sy" pk=bundle.quiz_for_SY.pk|default_if_none:"" %}'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Upload Code</button>
+          </form>
           {% endif %}
-          <p>this is a code</p>
+          <!-- end -->
+          
+          <p>{{ bundle.quiz_for_SY.answer }}</p>
         </div>  
     </div>
   </div>

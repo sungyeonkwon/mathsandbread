@@ -4,10 +4,10 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django import forms
 from django.contrib.auth.decorators import login_required
 
-from quizzes.forms import ImageForm
+from quizzes.forms import ImageForm, CodeForm
 from quizzes.models import QuizForEY, QuizForSY, Bundle
 
-def index(request, pk=None):
+def index(request, pk=None, category=None):
 
   bundles = Bundle.objects.order_by('start_date').filter(is_published=True)[::-1]
 
@@ -16,14 +16,16 @@ def index(request, pk=None):
   paged_bundles = pageinator.get_page(page)
 
   if request.method == 'POST':
-    print("need to get a pk", pk)
-    quiz_instance = get_object_or_404(QuizForEY, pk=pk)
-    print("request.POST", request.POST)
-
-    form = ImageForm(request.POST, request.FILES, instance=quiz_instance)
+    if category == 'ey':
+      quiz_instance = get_object_or_404(QuizForEY, pk=pk)
+      form = ImageForm(request.POST, request.FILES, instance=quiz_instance)
+    elif category == 'sy':
+      quiz_instance = get_object_or_404(QuizForSY, pk=pk)
+      form = CodeForm(request.POST, request.FILES, instance=quiz_instance)
     if form.is_valid():
       form.save()
-      return HttpResponse('good! uploaded well')
+      return redirect('index')
+
   else:
     form = ImageForm()
 
