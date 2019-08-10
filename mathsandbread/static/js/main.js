@@ -1,30 +1,30 @@
 console.log('main.js')
 
-// const fadeMessage = () => {
-//   setTimeout(() => {
-//     document.querySelector('#message').classList.add('hide')
-//   }, 2000)
-// }
+const JS_STACK_MAX_HEIGHT = '40px';
 
-const toggleContentClass = content => {
-  return [...content.classList].includes('show')?
-  content.classList.remove('show'):
-  content.classList.add('show');
+const toggleContentClass = jsStack => {
+  if (![...jsStack.classList].includes('show')) {
+    const titleHeight = jsStack.querySelector('.title').clientHeight
+    const contentHeight = jsStack.querySelector('.content').clientHeight
+    jsStack.style.maxHeight = `${titleHeight + contentHeight}px`
+    jsStack.classList.add('show')
+    return;
+  } 
+  jsStack.style.maxHeight = JS_STACK_MAX_HEIGHT
+  jsStack.classList.remove('show')
 }
 
 const onStackClick = e => {
   const classList = [...e.target.classList]
-  let content;
+  let jsStack;
   if (classList.includes('row')){
-    content = e.target.nextElementSibling
+    jsStack = e.target.parentElement
   } else if(classList.includes('column')){
-    content = e.target.parentElement.nextElementSibling
+    jsStack = e.target.parentElement.parentElement
   } else if(classList.includes('quiz')){
-    content = e.target.parentElement.parentElement
+    jsStack = e.target.parentElement.parentElement.parentElement
   }
-  console.log("e.target", e.target.parentElement.parentElement)
-  console.log("content", content)
-  toggleContentClass(content)
+  toggleContentClass(jsStack)
   return;
 }
 

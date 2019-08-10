@@ -1,6 +1,8 @@
 <nav>
   <span class="logo">
-    <a href="/">Maths and Bread</a>
+    <a href="/">Maths and bread Ver.1</a>
+    <a href="https://projecteuler.net/archives">@Project Euler</a>
+    <a href="https://www.codewars.com">@Code Wars</a>
   </span>
   <span class="login">
     {% if user.is_authenticated %}
@@ -12,7 +14,7 @@
       <input type="hidden">
     </form>
     {% else %}
-    <a href="{% url 'register' %}">Register</a>
+    <!-- <a href="{% url 'register' %}">Register</a> -->
     <a href="{% url 'login' %}">Login</a>
     {% endif %}
   </span>

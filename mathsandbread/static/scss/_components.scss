@@ -1,7 +1,16 @@
 /* Bundle */
+.container {
+  height:100%;
+}
+
+.js-stack {
+  max-height: 40px;
+  overflow-y: hidden;
+  transition: all .2s ease-in-out;
+}
+
 .row {
   width: 100%;
-  height: 40px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -14,27 +23,25 @@
 
 .row.title {
   cursor: pointer;
+  
+  &:hover {
+    opacity: 0.6;
+  }
 }
 
 .row.content {
   border: none;
-  // padding: 0;
-  display: none;
-  max-height: 0;
-  opacity: 0;
-  // transition: height .4s linear,
-  //   max-height .4s linear,
-  //   opacity .4s linear;
+  height: 100%;
 }
 
 .row.content.show{
   display: flex; 
   
   // padding: 10px;
-  overflow-y: hidden;
-  height: 100%;
+  
+  height: auto;
   opacity: 1;
-	max-height: 500px; /* approximate max height */
+	// max-height: 500px; /* approximate max height */
 }
 
 .column.period {
