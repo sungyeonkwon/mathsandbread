@@ -47,7 +47,9 @@
           {% if user.is_authenticated %}
           <button>Upload</button>
           {% endif %}
+          {% if bundle.quiz_for_EY.answer %}
           <img class="quiz-img" src="{{ bundle.quiz_for_EY.answer.url }}" />
+          {% endif %}
         </div>
         <div class="column">
           <h3 class="quiz">
