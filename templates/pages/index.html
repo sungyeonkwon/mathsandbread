@@ -41,15 +41,22 @@
           {{ bundle.quiz_for_EY.title }}
           </h3>
           <p>{{ bundle.quiz_for_EY.question }}</p>
+          {% if bundle.quiz_for_EY.question_image %}
+          <img class="quiz-img" src="{{ bundle.quiz_for_EY.question_image.url }}" />
+          {% endif %}
+          {% if user.is_authenticated %}
           <button>Upload</button>
-          <img src="{{ bundle.quiz_for_EY.answer.url }}" />
+          {% endif %}
+          <img class="quiz-img" src="{{ bundle.quiz_for_EY.answer.url }}" />
         </div>
         <div class="column">
           <h3 class="quiz">
           {{ bundle.quiz_for_SY.title }}
           </h3>
           <p>{{ bundle.quiz_for_SY.question }}</p>
+          {% if user.is_authenticated %}
           <button>Submit</button>
+          {% endif %}
           <p>this is a code</p>
         </div>  
     </div>

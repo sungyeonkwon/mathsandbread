@@ -4,6 +4,7 @@ import datetime
 class Quiz(models.Model):
     title = models.CharField(max_length=225, null=True)
     question = models.TextField(null=True)
+    question_image = models.ImageField(upload_to='question/%Y/%m/%d/', null=True, blank=True)
     source_link = models.URLField(null=True, blank=True, unique=True)
 
     ONGOING = "Ongoing"

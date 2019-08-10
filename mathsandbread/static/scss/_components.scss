@@ -19,14 +19,14 @@
 }
 
 .row.label {
-  background: pink;
+  font-weight: bold;
 }
 
 .row.title {
   cursor: pointer;
   
   &:hover {
-    opacity: 0.6;
+    color: blue;
   }
 }
 
@@ -40,6 +40,10 @@
   display: flex; 
   height: auto;
   opacity: 1;
+}
+
+.quiz-img {
+  padding-top: 20px;
 }
 
 .column.period {
