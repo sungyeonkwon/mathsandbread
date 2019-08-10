@@ -10,6 +10,7 @@
 }
 
 .row {
+  padding: 10px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -32,16 +33,13 @@
 .row.content {
   border: none;
   height: 100%;
+  padding: 10px 10px 35px 10px;
 }
 
 .row.content.show{
   display: flex; 
-  
-  // padding: 10px;
-  
   height: auto;
   opacity: 1;
-	// max-height: 500px; /* approximate max height */
 }
 
 .column.period {
@@ -54,7 +52,8 @@
 }
 
 .quiz {
-  font-size: 3em;
+  font-size: 2em;
+  margin-bottom:20px;
 }
 
 /* Form */

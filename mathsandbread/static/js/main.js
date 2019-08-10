@@ -2,11 +2,9 @@ console.log('main.js')
 
 const JS_STACK_MAX_HEIGHT = '40px';
 
-const toggleContentClass = jsStack => {
+const handleJsStackClick = jsStack => {
   if (![...jsStack.classList].includes('show')) {
-    const titleHeight = jsStack.querySelector('.title').clientHeight
-    const contentHeight = jsStack.querySelector('.content').clientHeight
-    jsStack.style.maxHeight = `${titleHeight + contentHeight}px`
+    applyJsStackTotalHeight(jsStack)
     jsStack.classList.add('show')
     return;
   } 
@@ -24,13 +22,32 @@ const onStackClick = e => {
   } else if(classList.includes('quiz')){
     jsStack = e.target.parentElement.parentElement.parentElement
   }
-  toggleContentClass(jsStack)
+  handleJsStackClick(jsStack)
   return;
+}
+
+const applyJsStackTotalHeight = jsStack => {
+  const titleHeight = jsStack.querySelector('.title').clientHeight
+  const contentHeight = jsStack.querySelector('.content').clientHeight
+  jsStack.style.maxHeight = `${titleHeight + contentHeight}px`
+}
+
+const handleReSize = () => {
+  jsStacks.forEach( v => {
+    if ([...v.classList].includes('show')) {
+      applyJsStackTotalHeight(v)
+      return;
+    } 
+  })
 }
 
 const jsStacks = document.querySelectorAll('.js-stack');
 
-jsStacks.forEach(stack => {
-  stack.addEventListener('click', onStackClick)
-})
+const addEventListeners = () => {
+  window.addEventListener('resize', handleReSize)
+  jsStacks.forEach(stack => {
+    stack.addEventListener('click', onStackClick)
+  })  
+}
 
+addEventListeners()

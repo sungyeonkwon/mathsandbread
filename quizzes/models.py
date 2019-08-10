@@ -1,11 +1,10 @@
 from django.db import models
-from datetime import datetime
-
+import datetime
 
 class Quiz(models.Model):
     title = models.CharField(max_length=225, null=True)
     question = models.TextField(null=True)
-    source_link = models.URLField(null=True, blank=True)
+    source_link = models.URLField(null=True, blank=True, unique=True)
 
     ONGOING = "Ongoing"
     PENDING = "Pending"
@@ -52,6 +51,11 @@ class Bundle(models.Model):
     is_published = models.BooleanField(default=True)
     quiz_for_EY = models.ForeignKey(QuizForEY, on_delete=models.CASCADE)
     quiz_for_SY = models.ForeignKey(QuizForSY, on_delete=models.CASCADE)
+
+    def time_passed(self):
+        today = datetime.date.today()    
+        timedelta = today - self.start_date 
+        return timedelta.days
 
     def __str__(self):
         return f'Bundle starting from {str(self.start_date)}'
