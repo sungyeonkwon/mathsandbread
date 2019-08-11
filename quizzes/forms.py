@@ -34,7 +34,7 @@ class CodeForm(ModelForm):
 
         if answer:
             form.answer = answer
-            form.status = ATTEMPTED
+            form.status = settings.CONSTANTS['attempted']
 
         form.save()
         return form

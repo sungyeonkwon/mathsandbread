@@ -40,7 +40,7 @@
           <h3 class="quiz">
           {{ bundle.quiz_for_EY.title }}
           </h3>
-          <p>{{ bundle.quiz_for_EY.question }}</p>
+          <p>{{ bundle.quiz_for_EY.question | safe }}</p>
           {% if bundle.quiz_for_EY.question_image %}
           <img class="quiz-img" src="{{ bundle.quiz_for_EY.question_image.url }}" />
           {% endif %}
@@ -63,7 +63,7 @@
           <h3 class="quiz">
           {{ bundle.quiz_for_SY.title }}
           </h3>
-          <p>{{ bundle.quiz_for_SY.question }}</p>
+          <p>{{ bundle.quiz_for_SY.question | markdownify |  safe | linebreaks }}</p>
 
           <!-- form code upload -->
           {% if user.is_authenticated %}
