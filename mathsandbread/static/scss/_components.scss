@@ -1,6 +1,7 @@
 /* Bundle */
 .container {
   height:100%;
+  overflow-x: hidden;
 }
 
 .js-stack {
@@ -26,7 +27,7 @@
   cursor: pointer;
   
   &:hover {
-    color: blue;
+    background-color: rgba(0,0,0,0.1)
   }
 }
 
@@ -46,13 +47,28 @@
   padding-top: 20px;
 }
 
-.column.period {
-  width: 20vw;
-}
-
 .column {
   width: 40vw;
   padding-right: 30px;
+
+  &.period {
+    width: 20vw;
+  }
+
+  &.ongoing {
+    color: red;
+  }
+
+  &.attempted {
+    color: green;
+  }
+
+  &.try-again {
+    color: orange;
+  }
+  &.completed {
+    color: black;
+  }
 }
 
 .quiz {
@@ -74,6 +90,20 @@ button {
   }
 }
 
+label {
+  display: none;
+}
+
+textarea {
+  resize: none;
+  border: 1px solid black;
+  outline: none;
+  rows: 5;
+}
+
+input[type=file] {
+  outline: none;
+}
 /* Messages for Login */
 .danger {
   color: red;

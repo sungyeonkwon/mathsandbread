@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 import datetime
 
 class Quiz(models.Model):
@@ -7,24 +8,18 @@ class Quiz(models.Model):
     question_image = models.ImageField(upload_to='question/%Y/%m/%d/', null=True, blank=True)
     source_link = models.URLField(null=True, blank=True, unique=True)
 
-    ONGOING = "Ongoing"
-    PENDING = "Pending"
-    TRY_AGAIN = "Try again?"
-    COMPLETED = "YAY!"
-    NOT_SUBMITTED = "You didn't like this quiz!"
-
     STATUS_CHOICES = [
-        (ONGOING, "Ongoing"),        
-        (PENDING, "Pending"),        
-        (TRY_AGAIN, "Try Again"),        
-        (COMPLETED, "Completed"),        
-        (NOT_SUBMITTED, "Not Submitted"),        
+        (settings.CONSTANTS['ongoing'], "Ongoing"),        
+        (settings.CONSTANTS['attempted'], "Attempted"),        
+        (settings.CONSTANTS['try_again'], "Try Again"),        
+        (settings.CONSTANTS['completed'], "Completed"),        
+        (settings.CONSTANTS['not_submitted'], "Not Submitted"),        
     ]
 
     status = models.CharField(
         max_length=50,
         choices=STATUS_CHOICES,
-        default=ONGOING)
+        default=settings.CONSTANTS['ongoing'])
 
     def __str__(self):
         return self.title

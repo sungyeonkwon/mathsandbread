@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from django.conf import settings
 from .models import QuizForEY, QuizForSY
 from django.shortcuts import get_object_or_404
 
@@ -10,10 +11,10 @@ class ImageForm(ModelForm):
         answer = self.cleaned_data['answer']
 
         quiz_instance = get_object_or_404(QuizForEY, pk=form.pk)
-        quiz_instance.answer = answer
 
         if answer:
             form.answer = answer
+            form.status = settings.CONSTANTS['attempted']
         
         form.save()
         return form
@@ -30,11 +31,11 @@ class CodeForm(ModelForm):
         answer = self.cleaned_data['answer']
 
         quiz_instance = get_object_or_404(QuizForSY, pk=form.pk)
-        quiz_instance.answer = answer
 
         if answer:
             form.answer = answer
-        
+            form.status = ATTEMPTED
+
         form.save()
         return form
 

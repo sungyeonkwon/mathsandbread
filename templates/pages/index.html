@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load sass_tags static %}
+{% load sass_tags static markdownify %}
 
 {% block content%}
 
@@ -24,10 +24,10 @@
       <div class="column period">
         Bundle {{ bundle.id}}
       </div>
-      <div class="column">
+      <div class="column {{ bundle.quiz_for_EY.status | slugify }}">
       {{ bundle.quiz_for_EY.status }}
       </div>
-      <div class="column">
+      <div class="column {{ bundle.quiz_for_SY.status | slugify }}">
       {{ bundle.quiz_for_SY.status }}
       </div>  
     </div>
@@ -49,7 +49,7 @@
           {% if user.is_authenticated %}
           <form method="post" action='{% url "index" category="ey" pk=bundle.quiz_for_EY.pk|default_if_none:"" %}' enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form_ey.as_p }}
             <button type="submit">Upload Answer Image</button>
           </form>
           {% endif %}
@@ -69,13 +69,13 @@
           {% if user.is_authenticated %}
           <form method="post" action='{% url "index" category="sy" pk=bundle.quiz_for_SY.pk|default_if_none:"" %}'>
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form_sy.as_p }}
             <button type="submit">Upload Code</button>
           </form>
           {% endif %}
           <!-- end -->
-          
-          <p>{{ bundle.quiz_for_SY.answer }}</p>
+
+          <p>{{ bundle.quiz_for_SY.answer | markdownify | safe }}</p>
         </div>  
     </div>
   </div>

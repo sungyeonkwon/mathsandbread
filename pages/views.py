@@ -10,28 +10,32 @@ from quizzes.models import QuizForEY, QuizForSY, Bundle
 def index(request, pk=None, category=None):
 
   bundles = Bundle.objects.order_by('start_date').filter(is_published=True)[::-1]
-
   pageinator = Paginator(bundles, 10)
   page = request.GET.get('page')
   paged_bundles = pageinator.get_page(page)
+  form_ey = None
+  form_sy = None
 
   if request.method == 'POST':
     if category == 'ey':
       quiz_instance = get_object_or_404(QuizForEY, pk=pk)
-      form = ImageForm(request.POST, request.FILES, instance=quiz_instance)
+      form_ey = ImageForm(request.POST, request.FILES, instance=quiz_instance)
+      if form_ey.is_valid():
+        form_ey.save()
     elif category == 'sy':
       quiz_instance = get_object_or_404(QuizForSY, pk=pk)
-      form = CodeForm(request.POST, request.FILES, instance=quiz_instance)
-    if form.is_valid():
-      form.save()
+      form_sy = CodeForm(request.POST, instance=quiz_instance)
+      if form_sy.is_valid():
+        form_sy.save()
       return redirect('index')
-
   else:
-    form = ImageForm()
+    form_ey = ImageForm(auto_id='id_for_%s', label_suffix='')
+    form_sy = CodeForm(auto_id='id_for_%s', label_suffix='')
 
   context = {
       'bundles': paged_bundles,
-      'form': form,
+      'form_ey': form_ey,
+      'form_sy': form_sy,
   }
 
   return render(request, 'pages/index.html', context)

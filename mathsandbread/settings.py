@@ -12,6 +12,15 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+# Custom variables for constants
+CONSTANTS = {
+    "ongoing": "Ongoing",
+    "attempted": "Attempted",
+    "try_again": "Try again?",
+    "completed" : "Solved",
+    "not_submitted": "You didn't like this quiz!",
+}
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -43,7 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'sass_processor',
-
+    'markdownify',
 ]
 
 MIDDLEWARE = [

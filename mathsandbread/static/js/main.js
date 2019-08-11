@@ -19,8 +19,8 @@ const onStackClick = e => {
     jsStack = e.target.parentElement
   } else if(classList.includes('column')){
     jsStack = e.target.parentElement.parentElement
-  } else if(classList.includes('quiz')){
-    jsStack = e.target.parentElement.parentElement.parentElement
+  } else {
+    return;
   }
   handleJsStackClick(jsStack)
   return;
@@ -41,10 +41,15 @@ const handleReSize = () => {
   })
 }
 
+const handleFirstStack = () => {
+  applyJsStackTotalHeight(jsStacks[0])
+}
+
 const jsStacks = document.querySelectorAll('.js-stack');
 
 const addEventListeners = () => {
   window.addEventListener('resize', handleReSize)
+  window.addEventListener('load', handleFirstStack)
   jsStacks.forEach(stack => {
     stack.addEventListener('click', onStackClick)
   })  
