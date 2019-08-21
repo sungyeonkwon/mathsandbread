@@ -57,10 +57,8 @@ class Bundle(models.Model):
 
     def time_passed(self):
         today = datetime.date.today()
-        if self.start_date:
-            timedelta = today - self.start_date 
-            return timedelta.days
-        return 0
+        timedelta = today - self.start_date 
+        return timedelta.days
 
     def __str__(self):
         return f'Bundle starting from {str(self.start_date)}'
