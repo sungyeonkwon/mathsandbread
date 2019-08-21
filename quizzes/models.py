@@ -35,23 +35,33 @@ class QuizForEY(Quiz):
         verbose_name = "Quiz For Eunyoung"
         verbose_name_plural = "Quizzes For Eunyoung"
 
+    def __str__(self):
+        return f'Quiz for EY {str(self.id)}'
+    
 class QuizForSY(Quiz):
     answer = models.TextField(null=True, blank=True)
 
     class Meta: 
         verbose_name = "Quiz For Sungyeon"
         verbose_name_plural = "Quizzes For Sungyeon"
+    
+    def __str__(self):
+        return f'Quiz for SY {str(self.id)}'
 
 class Bundle(models.Model):
     start_date = models.DateField(null=True)    
     is_published = models.BooleanField(default=True)
-    quiz_for_EY = models.ForeignKey(QuizForEY, on_delete=models.CASCADE)
-    quiz_for_SY = models.ForeignKey(QuizForSY, on_delete=models.CASCADE)
+    is_bonus = models.BooleanField(default=False)
+    quiz_for_EY = models.ForeignKey(QuizForEY, on_delete=models.CASCADE, null=True)
+    quiz_for_SY = models.ForeignKey(QuizForSY, on_delete=models.CASCADE, null=True)
 
     def time_passed(self):
-        today = datetime.date.today()    
-        timedelta = today - self.start_date 
-        return timedelta.days
+        today = datetime.date.today()
+        if self.start_date:
+            timedelta = today - self.start_date 
+            return timedelta.days
+        return 0
 
     def __str__(self):
         return f'Bundle starting from {str(self.start_date)}'
+        

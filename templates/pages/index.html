@@ -22,7 +22,11 @@
   <div class="container js-stack">
     <div class="row title">
       <div class="column period">
-        Bundle {{ bundle.id}}
+        {% if bundle.is_bonus %}
+        🥐 Croissant {{ bundle.id}}
+        {% else %}
+        🍞 Bread {{ bundle.id}}
+        {% endif %}
       </div>
       <div class="column {{ bundle.quiz_for_EY.status | slugify }}">
       {{ bundle.quiz_for_EY.status }}

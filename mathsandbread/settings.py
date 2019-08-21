@@ -16,9 +16,9 @@ import os
 CONSTANTS = {
     "ongoing": "Ongoing",
     "attempted": "Attempted",
-    "try_again": "Try again?",
-    "completed" : "Solved",
-    "not_submitted": "You didn't like this quiz!",
+    "try_again": "Try again",
+    "completed" : "Completed",
+    "not_submitted": "Not submitted",
 }
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
