@@ -56,10 +56,9 @@ class Bundle(models.Model):
     quiz_for_SY = models.ForeignKey(QuizForSY, on_delete=models.CASCADE, null=True)
 
     def time_passed(self):
-        return self.start_date
-        # today = datetime.date.today()
-        # timedelta = today - self.start_date 
-        # return timedelta.days
+        today = datetime.date.today()
+        timedelta = today - self.start_date 
+        return timedelta.days
 
     def __str__(self):
         return f'Bundle starting from {str(self.start_date)}'
