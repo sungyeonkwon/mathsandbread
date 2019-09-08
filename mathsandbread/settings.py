@@ -34,10 +34,22 @@ SECRET_KEY = '_v!4z!s@11(vkrb6(v7p6d88#fzk@a8nl5xe#^#qky$_bl+b@c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['167.71.129.131', 'localhost']
+ALLOWED_HOSTS = ['167.71.129.131', 'localhost', '127.0.0.1']
 
 
 # Application definition
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    ),
+}
 
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
@@ -53,6 +65,16 @@ INSTALLED_APPS = [
 
     'sass_processor',
     'markdownify',
+    'rest_framework',
+    'corsheaders',
+
+]
+
+CORS_ORIGIN_WHITELIST = [
+    "https://example.com",
+    "https://sub.example.com",
+    "http://localhost:4200",
+    "http://127.0.0.1:9000"
 ]
 
 MIDDLEWARE = [
@@ -63,6 +85,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'mathsandbread.urls'
@@ -145,11 +169,11 @@ STATICFILES_DIRS = [
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'sass_processor.finders.CssFinder',
+    # 'sass_processor.finders.CssFinder',
 ]
 
 # Django Sass
-SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static/scss')
+# SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static/scss')
 
 # Media Folder Settings
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

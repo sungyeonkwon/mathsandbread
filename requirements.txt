@@ -19,6 +19,7 @@ django-appconf==1.0.3
 django-compressor==2.3
 django-markdownify==0.8.0
 django-sass-processor==0.7.3
+djangorestframework==3.10.3
 hiredis==1.0.0
 hyperlink==19.0.0
 idna==2.8

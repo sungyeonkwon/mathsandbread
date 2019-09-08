@@ -1,11 +1,21 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
+from django.http import HttpResponse, JsonResponse
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django import forms
 from django.contrib.auth.decorators import login_required
 
 from quizzes.forms import ImageForm, CodeForm
-from quizzes.models import QuizForEY, QuizForSY, Bundle
+from quizzes.models import Quiz, QuizForEY, QuizForSY, Bundle
+from quizzes.serializers import QuizSerializer, QuizForEYSerializer, QuizForSYSerializer, BundleSerializer
+
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def get_data(request):
+	data = Quiz.objects.all()
+	if request.method == 'GET':
+		serializer = QuizSerializer(data, many=True)
+		return JsonResponse(serializer.data, safe=False)
 
 def index(request, pk=None, category=None):
 
