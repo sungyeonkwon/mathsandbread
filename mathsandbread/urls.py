@@ -26,8 +26,8 @@ urlpatterns = [
     # path('', include('pages.urls')),
     # path('', include('accounts.urls')),
     url('getData', get_data),
-    url('', TemplateView.as_view(template_name="home.html"), name="home"),
     path('admin/', admin.site.urls),
+    path('', TemplateView.as_view(template_name="home.html"), name="home"),
 ]
 
 
