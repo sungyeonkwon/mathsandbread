@@ -12,9 +12,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def get_data(request):
-	data = Quiz.objects.all()
+	bundle_data = Bundle.objects.all()
 	if request.method == 'GET':
-		serializer = QuizSerializer(data, many=True)
+		serializer = BundleSerializer(bundle_data, many=True)
 		return JsonResponse(serializer.data, safe=False)
 
 def index(request, pk=None, category=None):
