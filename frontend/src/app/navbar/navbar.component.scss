@@ -1,7 +1,20 @@
 :host {
+  align-items: center;
   background-color: yellow; 
-  display: block;
-  height: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 80px;
   margin: 0;
   width: 100%;
+  justify-content: space-between;
+}
+
+span {
+  padding: 12px;
+  display: inline-block;
+}
+
+.logo {
+  font-size: 50px;
 }

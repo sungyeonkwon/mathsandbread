@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Quiz } from '../app.type'
 
 @Component({
   selector: 'app-player',
@@ -6,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent implements OnInit {
+
+  @Input() index: number;
+  @Input() player: string;
+  @Input() quiz: Quiz;
+  @Input() date: string;
 
   constructor() { }
 

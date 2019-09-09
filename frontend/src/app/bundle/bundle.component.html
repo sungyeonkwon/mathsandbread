@@ -1,0 +1,39 @@
+<ng-container *ngFor="let bundle of bundles; let index = index">
+  <div class="container">
+    <div class="column">
+      <p 
+        *ngIf="index === 0"
+        class="heading">EY</p>
+      <app-map 
+        *ngIf="index === 0"
+        [player]="'EY'"
+        [bundles]="bundles"
+        [quiz]="bundle.quiz_for_EY"
+      ></app-map>
+      <app-player
+        [index]="index"
+        [date]="bundle.start_date"
+        [quiz]="bundle.quiz_for_EY"
+        [player]="'EY'"
+      ></app-player>
+    </div>
+    <div class="column">
+      <p 
+        *ngIf="index === 0"
+        class="heading">SY</p>
+      <app-map 
+        *ngIf="index === 0"
+        [player]="'SY'"
+        [bundles]="bundles"
+        [quiz]="bundle.quiz_for_SY"
+      ></app-map>
+      <app-player
+        [index]="index"
+        [date]="bundle.start_date"
+        [quiz]="bundle.quiz_for_SY"
+        [player]="'SY'"
+      ></app-player>
+    </div>
+  </div>
+<!-- <pre>{{ bundle | json }}</pre> -->
+</ng-container>

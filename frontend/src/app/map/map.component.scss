@@ -1,10 +1,27 @@
 .unit-conatiner {
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
-  grid-template-rows: 50px 50px 50px 50px 50px;
+  grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px;
 }
 
 .unit {
-  border: 1px solid blue;
-  font-size: 40px;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  justify-content: center;
+
+  &.completed {
+    background-color: green;
+  }
+
+  &.ongoing {
+    background-color: red;
+  }
+
+  &.default {
+    background-color: grey;
+  }
 }

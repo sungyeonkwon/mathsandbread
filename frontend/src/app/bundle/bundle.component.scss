@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.column {
+  display: block;
+  height: 100%;
+  width: 50%;
+  flex-grow: 1;
+}
+
+.heading {
+  text-align: center;
+  background-color: blue;
+  color: white;
+  margin: 0;
+}
